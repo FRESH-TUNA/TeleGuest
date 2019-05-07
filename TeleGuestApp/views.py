@@ -27,15 +27,18 @@ def delete(request, pk):
             Post.objects.
     return redirect('index')
     '''
+def validateAdmin(request, pk, post, logic):
+    adminMember = get_object_or_404(Member, email=request.POST['email'])
+    if str(adminMember.pwd) == request.POST['pwd'] and adminMember.chosen_post == post: 
+        return redirect(logic, pk=pk)
     
 def update(request, pk):
     post = get_object_or_404(Post,id=pk)
     if request.method == "GET":
-        return render(request, 'post_form.html', {'post':post})
+            return render(request, 'post_form.html', {'post':post})
     else:
         form = PostForm(request.POST, instance=post)
         form.save()
-        object_list = Post.objects.all()
         return redirect('index')
     
     
@@ -67,7 +70,7 @@ def participate(request, pk):
         
         new_member.chosen_post = post  
         new_member.save()
-        return redirect('index')
+        return redirect('detail')
     else:
         return redirect('detail')
         
@@ -82,7 +85,7 @@ def unparticipate(request, pk):
         post.save()
         member.delete()
     
-    return redirect('index')
+    return redirect('detail')
 
 def reserve(request):
     return render(request, 'reserve.html')

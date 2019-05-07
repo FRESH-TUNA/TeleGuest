@@ -18,24 +18,21 @@ def delete(request, pk):
         post.delete()
         object_list = Post.objects.all()
         return redirect('index')
-    '''
-    member = Member.objects.all().filter(email=request.POST['email'])
-    if len(member) == 1:
-        if member[0].pwd == request.POST['pwd']:
-            post = get_object_or_404(Post,id=pk)
-            post.delete()
-            Post.objects.
-    return redirect('index')
-    '''
+  
+'''
+def validateAdmin(request, pk, post, logic):
+    adminMember = get_object_or_404(Member, email=request.POST['email'])
+    if str(adminMember.pwd) == request.POST['pwd'] and adminMember.chosen_post == post: 
+        return redirect(logic, pk=pk)
+'''
     
 def update(request, pk):
     post = get_object_or_404(Post,id=pk)
     if request.method == "GET":
-        return render(request, 'post_form.html', {'post':post})
+            return render(request, 'post_form.html', {'post':post})
     else:
         form = PostForm(request.POST, instance=post)
         form.save()
-        object_list = Post.objects.all()
         return redirect('index')
     
     
@@ -67,22 +64,29 @@ def participate(request, pk):
         
         new_member.chosen_post = post  
         new_member.save()
-        return redirect('index')
+        return redirect('detail',pk)
     else:
-        return redirect('detail')
+        return redirect('detail',pk)
         
      
         
 def unparticipate(request, pk):
     member = get_object_or_404(Member, email=request.POST['email'])
-    
+    '''
     if str(member.pwd) == request.POST['pwd']:
         post = get_object_or_404(Post,id=pk)
         post.now_capacity = post.now_capacity -1
         post.save()
         member.delete()
-    
-    return redirect('index')
+    '''
+    member = Member.objects.all().filter(email=request.POST['email'])
+    if len(member) == 1:
+        if str(member[0].pwd) == request.POST['pwd']:
+            post = get_object_or_404(Post,id=pk)
+            post.now_capacity = post.now_capacity - 1
+            post.save()
+            member[0].delete() 
+    return redirect('detail',pk)
 
 def reserve(request):
     return render(request, 'reserve.html')

@@ -89,9 +89,9 @@
                         </a>
                     </td>
                      <td>
-                         <a href="{% url 'delete' post.id %}">
-                             <button type="button" class="btn btn-outline-primary">삭제하기</button>
-                         </a>
+                          <a href="{% url 'delete' post.id %}">
+                            <button type="button" class="btn btn-outline-primary">삭제하기</button>
+                        </a>
                     </td>
                     <td>
                         <a href="{% url 'detail' post.id %}">
@@ -106,10 +106,8 @@
                 {% endfor %}
             </tbody>
         </table>
-    <footer>
-
-
-    </footer>
+        
+     {% include 'modals/validationModal.html'%} 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -16,7 +16,7 @@ class Post(models.Model):
     
 
 class Member(models.Model):
-    chosen_post =  models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    chosen_post =  models.ForeignKey(Post, on_delete=models.CASCADE)
     email = models.CharField(max_length=1000,default="")
     pwd = models.IntegerField(default=0)
     number = models.CharField(max_length=1000,default="")

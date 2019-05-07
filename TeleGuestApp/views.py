@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render, redirect
-
 from .models import *
 from .forms import *
 
@@ -63,30 +62,26 @@ def participate(request, pk):
     
     if post.capacity > post.now_capacity:
         post.now_capacity = post.now_capacity+1
-        post = post.save()   
+        post.save()   
         new_member = new_member.save()
         
         new_member.chosen_post = post  
         new_member.save()
         return redirect('index')
     else:
-        
         return redirect('detail')
         
      
         
 def unparticipate(request, pk):
-    post = get_object_or_404(Post,id=pk)
-    post.now_capacity = post.now_capacity -1
-    post.save()
-    '''
-    member = Member.objects.filter(email=request.POST['email'])
-    if member[0].pwd == request.POST['pwd']:
+    member = get_object_or_404(Member, email=request.POST['email'])
+    
+    if str(member.pwd) == request.POST['pwd']:
         post = get_object_or_404(Post,id=pk)
         post.now_capacity = post.now_capacity -1
         post.save()
-        member[0].delete()
-    '''
+        member.delete()
+    
     return redirect('index')
 
 def reserve(request):

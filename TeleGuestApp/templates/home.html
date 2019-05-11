@@ -1,5 +1,5 @@
-<html lang="kr">
-
+{% load static %}
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>TeleGuest</title>
+    <title>GuestHouse</title>
 
     <style>
         #main-section {
@@ -19,45 +19,22 @@
         #nav-section {
             margin: 20px;
         }
-        
-        .display-4 {
-            font-family: 'Just Another Hand', cursive;
-        }
-        
-        .navbar-brand{
-            font-family: 'Just Another Hand', cursive;
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand" rel="stylesheet">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Guest House</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action="/#">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id='kw1' name='kw2'>
-                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
-            </form>
-        </div>
-    </nav>
-
-    <header>
-        <div class="jumbotron jumbotron-fluid" style="background-image: url('https://github.com/ros008/test01/blob/master/test/idol.png?raw=true'); height: 700px;">
-            <div class="container">
-            <p></p>
-            </div>
-        </div>
+    <!--nav-->
+    <div id="nav">
+        <navapp v-bind:title="title"></navapp>
+    </div>
+    
+     <!--header-->
+    <header id="header">
+        <teleguest-header>
+        </teleguest-header>
     </header>
-
+    
     <section id="title" style="text-align:center;">
             <h1 class="display-4"><strong>Guest House</strong></h1>
             <p class="lead">팬들끼리 소통할 수 있는 공간.</p>
@@ -65,8 +42,6 @@
 
     <section id="nav-section">
             <input class="btn btn-outline-primary" type="button" value="모임 만들기" onClick="location.href='{% url 'create' %}'">
-
-            <!-- <a href="{% url 'create' %}">모임 만들기</a> -->
     </section>
 
     <section id="main-section">
@@ -97,9 +72,8 @@
                         </a>
                     </td>
                      <td>
-                          <a href="{% url 'delete' post.id %}">
-                            <button type="button" class="btn btn-outline-primary">삭제하기</button>
-                        </a>
+                          <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                        data-target="#validationModal">참가취소</button>
                     </td>
                     <td>
                         <a href="{% url 'detail' post.id %}">
@@ -114,9 +88,13 @@
                 {% endfor %}
             </tbody>
         </table>
-        
      {% include 'modals/validationModal.html'%} 
-
+        
+    <script src="{% static 'js/vue.js' %}"></script>
+    <script src="{% static 'js/CSR/nav.js' %}"></script>
+    <script src="{% static 'js/CSR/header.js' %}"></script>
+    <script src="{% static 'js/CSR/partyTable.js' %}"></script>    
+   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

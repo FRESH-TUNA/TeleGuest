@@ -2,9 +2,6 @@ var headerComponent = {
     template: 
     `
     <div v-bind:class="classObject" v-bind:style="styleObject">
-        <div class="container">
-        <p></p>
-        </div>
     </div>
     `,
     data: function() {
@@ -21,6 +18,16 @@ var headerComponent = {
     }
 };
 
+var headerTitleComponent = {
+    template:
+    `
+     <section id="header-title" style="text-align:center;">
+            <h1 class="display-4"><strong>Guest House</strong></h1>
+            <p class="lead">팬들끼리 소통할 수 있는 공간.</p>
+     </section>
+    `
+};
+   
 
 var teleguestHeader = new Vue({
     delimiters: ["[[","]]"],
@@ -29,7 +36,8 @@ var teleguestHeader = new Vue({
         
     },
     components: {
-        'teleguest-header': headerComponent
+        'teleguest-header': headerComponent,
+         'teleguest-header-title': headerTitleComponent
     }
 });
 

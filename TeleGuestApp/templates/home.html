@@ -31,32 +31,19 @@
     
      <!--header-->
     <header id="header">
-        <teleguest-header>
-        </teleguest-header>
+        <teleguest-header></teleguest-header>
+        <teleguest-header-title></teleguest-header-title>
     </header>
-    
-    <section id="title" style="text-align:center;">
-            <h1 class="display-4"><strong>Guest House</strong></h1>
-            <p class="lead">팬들끼리 소통할 수 있는 공간.</p>
-    </section>
 
+    <!--create party section-->
     <section id="nav-section">
             <input class="btn btn-outline-primary" type="button" value="모임 만들기" onClick="location.href='{% url 'create' %}'">
     </section>
 
-    <section id="main-section">
+    <!--show party section-->
+    <section id="read-parties">
         <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th>콘서트이름</th>
-                    <th>가수</th>
-                    <th>콘서트날짜</th>
-                    <th>글쓴이이메일</th>
-                    <th>게시날짜</th>
-                    <th>수정</th>
-                    <th>삭제</th>
-                    <th>상세정보</th>
-                </tr>
+            <thead is="table-header">
             </thead>
             <tbody>
                 {% for post in object_list %}
@@ -88,7 +75,8 @@
                 {% endfor %}
             </tbody>
         </table>
-     {% include 'modals/validationModal.html'%} 
+        
+    {% include 'modals/validationModal.html'%} 
         
     <script src="{% static 'js/vue.js' %}"></script>
     <script src="{% static 'js/CSR/nav.js' %}"></script>

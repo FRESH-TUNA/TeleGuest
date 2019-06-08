@@ -56,7 +56,7 @@ def create(request):
         
         object_list = Post.objects.all()
         return redirect('index')
-    
+'''  
 def participate(request, pk):
     new_member = MemberForm(request.POST)
     post = get_object_or_404(Post,id=pk)
@@ -70,24 +70,59 @@ def participate(request, pk):
         new_member.save()
         return redirect('index')
     else:
-        
         return redirect('detail')
+'''
+
+def participate(request, pk):
+    if request.method == 'GET':
+        return render(request, 'test_participate.html', {'post': pk})
+    else:
+        new_member = MemberForm(request.POST)
+        post = get_object_or_404(Post,id=pk)
         
+        if post.capacity > post.now_capacity:
+            post.now_capacity = post.now_capacity+1
+            post = post.save()   
+            new_member = new_member.save()
+            
+            new_member.chosen_post = post  
+            new_member.save()
+            return redirect('index')
+        else:
+            return redirect('detail')
      
-        
+'''     
 def unparticipate(request, pk):
     post = get_object_or_404(Post,id=pk)
     post.now_capacity = post.now_capacity -1
     post.save()
-    '''
+    
     member = Member.objects.filter(email=request.POST['email'])
     if member[0].pwd == request.POST['pwd']:
         post = get_object_or_404(Post,id=pk)
         post.now_capacity = post.now_capacity -1
         post.save()
         member[0].delete()
-    '''
+    
     return redirect('index')
+'''
+
+def unparticipate(request, pk):
+    if request.method == 'GET':
+        return render(request, 'test_unparticipate.html')
+    else:
+        post = get_object_or_404(Post,id=pk)
+        post.now_capacity = post.now_capacity -1
+        post.save()
+        
+        member = Member.objects.filter(email=request.POST['email'])
+        if member[0].pwd == request.POST['pwd']:
+            post = get_object_or_404(Post,id=pk)
+            post.now_capacity = post.now_capacity -1
+            post.save()
+            member[0].delete()
+        
+        return redirect('index')
 
 def reserve(request):
     return render(request, 'reserve.html')

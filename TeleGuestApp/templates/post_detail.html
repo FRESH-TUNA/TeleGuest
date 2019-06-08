@@ -22,12 +22,15 @@
         {% if post.capacity == post.now_capacity %}
         <button type="button" class="btn btn-outline-primary" data-toggle="modal"data-target="#JoinModal" disabled>참가신청</button>
         {% else %}
+        <a href="{% url 'participate' post.id %}">
         <button type="button" class="btn btn-outline-primary" data-toggle="modal"data-target="#JoinModal">참가신청</button>
+        </a>
         {% endif %}
         
+        <a href="{% url 'unparticipate' post.id %}">
         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                         data-target="#CancelModal">참가취소</button>
-        
+        </a>
         <a href="/reserve"><button type="button" class="btn btn-outline-primary"
                         data-target="#CancelModal">모집완료</button>
         </a>

@@ -1,0 +1,9 @@
+ <form action = "/unparticipate/{{post.id}}" accept-charset="utf-8" method = "post">
+                                {% csrf_token %}
+                                <label for="user-email" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" id="user-email" name="email">
+                                <label for="user-pw" class="col-form-label">Password:</label>
+                                <input type="text" class="form-control" id="user-pw" name="pwd"></input>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Cancel</button>
+                        </form>

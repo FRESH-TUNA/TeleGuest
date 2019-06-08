@@ -1,0 +1,13 @@
+  <form action = "/participate/{{post}}" accept-charset="utf-8" method = "post">
+                             {% csrf_token %}
+                                <label for="user-email" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" id="user-email" name="email">
+                            
+                                <label for="user-phonenum" class="col-form-label">Phone Number:</label>
+                                <input type="text" class="form-control" id="user-phonenum" name="number">
+                          
+                                <label for="user-pw" class="col-form-label">Password:</label>
+                                <input type="text" class="form-control" id="user-pw" name="pwd"></textarea>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                      

@@ -1,4 +1,5 @@
 # TeleGuest
+![](./teleguest.jpg)
 같은 관심사를 가진 사람들을 위한 게스트하우스 예약 서비스
 2019 Newbieton
 <teleguest.herokuapp.com/>

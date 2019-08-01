@@ -15,20 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import TeleGuestApp.views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',TeleGuestApp.views.index,name="index"),
-    path('create/',TeleGuestApp.views.create,name="create"),
-    path('detail/<int:pk>',TeleGuestApp.views.detail,name="detail"),
-    path('update/<int:pk>',TeleGuestApp.views.update,name="update"),
-    path('delete/<int:pk>',TeleGuestApp.views.delete,name="delete"),
+    # path('admin/', admin.site.urls),
+    # path('',TeleGuestApp.views.index,name="index"),
+    # path('create/',TeleGuestApp.views.create,name="create"),
+    # path('detail/<int:pk>',TeleGuestApp.views.detail,name="detail"),
+    # path('update/<int:pk>',TeleGuestApp.views.update,name="update"),
+    # path('delete/<int:pk>',TeleGuestApp.views.delete,name="delete"),
 
-    path('participate/<int:pk>',TeleGuestApp.views.participate, name="participate"),
-    path('unparticipate/<int:pk>',TeleGuestApp.views.unparticipate,name="unparticipate"),
+    # path('participate/<int:pk>',TeleGuestApp.views.participate, name="participate"),
+    # path('unparticipate/<int:pk>',TeleGuestApp.views.unparticipate,name="unparticipate"),
     
-    path('reserve',TeleGuestApp.views.reserve,name="reserve"),
-    path('reserve_house',TeleGuestApp.views.reserve_house,name="reserve_house"),
-    path('reserve_finish',TeleGuestApp.views.reserve_finish,name="reserve_finish"),
+    # path('reserve',TeleGuestApp.views.reserve,name="reserve"),
+    # path('reserve_house',TeleGuestApp.views.reserve_house,name="reserve_house"),
+    # path('reserve_finish',TeleGuestApp.views.reserve_finish,name="reserve_finish"),
 ]
